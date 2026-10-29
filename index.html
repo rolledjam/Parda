@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="PARDA — a short documentary on girls' education in Pakistan. Spoken in Urdu, subtitled in English.">
+<meta name="theme-color" content="#0A0908">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0908'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='21' fill='%23E4BC77' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+
+<!-- Social preview. Replace the two URLs below with your live address
+     (e.g. https://yourname.github.io/parda/) once the site is published. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="PARDA">
+<meta property="og:description" content="PARDA — a short documentary on girls' education in Pakistan. Spoken in Urdu, subtitled in English.">
+<meta property="og:image" content="poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  /* Base reset */
+  :root{
+    color-scheme:dark;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+
+<title>PARDA</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cormorant+Garamond:wght@300;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+
+<style>
+/* Layout: one unbroken black column cut by hairline rules, with a timecode rail
+   down the left edge; a single inverted linen band carries the evidence. */
+:root{
+  color-scheme: dark;
+
+  --ink:#0A0908;
+  --ink-2:#121110;
+  --bone:#EFEAE3;
+  --bone-dim:rgba(239,234,227,.60);
+  --bone-faint:rgba(239,234,227,.34);
+  --rule:rgba(239,234,227,.15);
+  --gold:#E4BC77;
+  --gold-deep:#C29752;
+
+  --linen:#E7E2D8;
+  --linen-ink:#17140F;
+  --linen-dim:rgba(23,20,15,.74);
+  --linen-rule:rgba(23,20,15,.20);
+  --linen-label:#7A5A1F;
+
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --urdu:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq",serif;
+
+  --gut-l:max(20px,env(safe-area-inset-left,0px));
+  --gut-r:max(20px,env(safe-area-inset-right,0px));
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);z-index:60;
+  background:rgba(10,9,8,.92);
+}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+
+.wrap{max-width:1120px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.narrow{max-width:860px}
+
+.label{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.26em;
+  color:var(--gold);margin:0;
+}
+.ur{font-family:var(--urdu);line-height:2.15;font-weight:400}
+
+/* ── nav ─────────────────────────────────────────── */
+.nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:rgba(10,9,8,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-in{
+  max-width:1120px;margin-inline:auto;
+  padding-left:var(--gut-l);padding-right:var(--gut-r);
+  min-height:58px;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.mark{
+  font-family:var(--display);font-weight:600;font-size:20px;
+  letter-spacing:.34em;color:var(--bone);text-decoration:none;
+  padding-block:10px;
+}
+.nav nav{display:flex;gap:clamp(12px,3vw,30px);flex-wrap:wrap;padding-bottom:8px}
+.nav nav a{
+  font-family:var(--mono);font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.18em;color:var(--bone-dim);text-decoration:none;
+  padding-block:6px;transition:color .2s;
+}
+.nav nav a:hover,.nav nav a:focus-visible{color:var(--gold)}
+
+/* ── hero ────────────────────────────────────────── */
+.hero{position:relative;overflow:hidden;background:var(--ink)}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;filter:grayscale(.35) contrast(1.05)}
+.hero-veil{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(135% 85% at 50% 40%,rgba(10,9,8,.12) 0%,rgba(10,9,8,.66) 58%,rgba(10,9,8,.96) 100%),
+    linear-gradient(to bottom,rgba(10,9,8,.5),rgba(10,9,8,.2) 38%,var(--ink));
+}
+.hero-in{
+  position:relative;max-width:1120px;margin-inline:auto;
+  padding-left:var(--gut-l);padding-right:var(--gut-r);
+  padding-block:clamp(60px,12vw,110px);
+  min-height:clamp(480px,70vh,700px);
+  display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;gap:0;
+}
+.hero-in>*{animation:rise .9s cubic-bezier(.2,.7,.3,1) both}
+.hero-in>*:nth-child(2){animation-delay:.1s}
+.hero-in>*:nth-child(3){animation-delay:.16s}
+.hero-in>*:nth-child(4){animation-delay:.24s}
+.hero-in>*:nth-child(5){animation-delay:.32s}
+@keyframes rise{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.title{
+  font-family:var(--display);font-weight:500;
+  font-size:clamp(56px,15vw,140px);line-height:.92;
+  letter-spacing:.2em;text-indent:.2em;
+  color:var(--gold);margin-top:26px;
+}
+.title-ur{font-family:var(--urdu);font-size:clamp(22px,5vw,34px);color:var(--bone);margin-top:18px;line-height:1.9}
+.tagline{
+  margin-top:14px;padding-top:18px;border-top:1px solid rgba(228,188,119,.4);
+  font-size:clamp(14px,2.4vw,17px);color:var(--bone-dim);
+  letter-spacing:.02em;max-width:50ch;
+}
+.hero-blurb{margin-top:30px;max-width:56ch;color:var(--bone-dim);font-size:clamp(15px,2vw,17.5px)}
+.hero-blurb b{color:var(--bone);font-weight:500}
+
+.cta-row{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.2em;
+  padding:15px 26px;text-decoration:none;border:1px solid transparent;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.btn-solid{background:var(--gold);color:#120E07;font-weight:500}
+.btn-solid:hover,.btn-solid:focus-visible{background:var(--bone)}
+.btn-ghost{border-color:rgba(239,234,227,.38);color:var(--bone)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--gold);color:var(--gold)}
+
+/* ── sections ────────────────────────────────────── */
+section{scroll-margin-top:72px}
+.band{padding-block:clamp(60px,9vw,108px)}
+.band-dark{background:var(--ink)}
+.band-linen{background:var(--linen);color:var(--linen-ink)}
+.band+.band-dark{border-top:1px solid var(--rule)}
+
+.head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;justify-content:space-between}
+.sec-h2{font-family:var(--display);font-weight:500;font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:.005em;margin-top:22px}
+.sec-h2-ur{font-family:var(--urdu);font-size:clamp(24px,4.6vw,40px);line-height:2;margin-top:22px}
+.sec-sub{margin-top:18px;max-width:58ch;color:var(--bone-dim)}
+
+/* ── film ────────────────────────────────────────── */
+.player{
+  margin-top:30px;background:#000;aspect-ratio:16/9;width:100%;
+  border:1px solid var(--rule);
+  box-shadow:0 30px 80px -40px rgba(0,0,0,.95);
+}
+.player video{width:100%;height:100%;object-fit:contain;background:#000}
+.film-foot{
+  margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;
+  font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.17em;color:var(--bone-faint);
+}
+
+/* ── voices ──────────────────────────────────────── */
+.voices{margin-top:44px;display:flex;flex-direction:column}
+.voice{
+  all:unset;display:grid;grid-template-columns:72px 1fr;gap:4px 18px;
+  border-top:1px solid var(--rule);padding-block:26px;
+  cursor:pointer;transition:background .2s;
+}
+.voice:hover,.voice:focus-visible{background:rgba(228,188,119,.055)}
+.voice:focus-visible{outline:1px solid var(--gold);outline-offset:-1px}
+.tc{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gold-deep);
+  font-variant-numeric:tabular-nums;padding-top:9px;
+}
+.voice:hover .tc,.voice:focus-visible .tc{color:var(--gold)}
+.voice q{
+  quotes:none;font-family:var(--display);font-weight:300;
+  font-size:clamp(23px,3.8vw,34px);line-height:1.34;color:var(--bone);
+  display:block;
+}
+.voice .play{
+  grid-column:2;font-family:var(--mono);font-size:10px;text-transform:uppercase;
+  letter-spacing:.18em;color:var(--bone-faint);margin-top:12px;
+}
+.voice:hover .play,.voice:focus-visible .play{color:var(--gold)}
+
+.endcard{
+  margin-top:40px;border:1px solid rgba(228,188,119,.3);
+  padding:clamp(28px,5vw,54px);text-align:center;background:var(--ink-2);
+}
+.endcard p{
+  font-family:var(--display);font-weight:300;color:var(--gold);
+  font-size:clamp(21px,3.6vw,32px);line-height:1.42;
+}
+.endcard .label{margin-bottom:18px;color:var(--bone-faint)}
+
+/* ── story ───────────────────────────────────────── */
+.lines{margin-top:40px;display:flex;flex-direction:column}
+.line{
+  border-top:1px solid var(--rule);padding-block:30px;
+  display:grid;grid-template-columns:56px 1fr;gap:6px 18px;
+}
+.line .n{
+  font-family:var(--mono);font-size:11px;color:var(--gold-deep);
+  font-variant-numeric:tabular-nums;padding-top:12px;
+}
+.line .ur{font-size:clamp(19px,3.2vw,27px);color:var(--bone)}
+.line .en{margin-top:14px;color:var(--bone-dim);font-size:16px;max-width:62ch}
+
+/* ── linen band ──────────────────────────────────── */
+.band-linen .label{color:var(--linen-label)}
+.band-linen .sec-h2{color:var(--linen-ink)}
+.band-linen .sec-sub{color:var(--linen-dim)}
+.lead-ur{font-family:var(--urdu);font-size:clamp(20px,3.4vw,30px);line-height:2.1;color:var(--linen-ink);margin-top:20px}
+
+.facts{margin-top:46px;display:grid;grid-template-columns:1fr;gap:0 clamp(28px,5vw,64px)}
+@media (min-width:760px){.facts{grid-template-columns:1fr 1fr}}
+.fact{border-top:1px solid var(--linen-rule);padding-block:30px;min-width:0}
+.fact h3{font-family:var(--display);font-weight:600;font-size:clamp(23px,3vw,30px);line-height:1.18;color:var(--linen-ink)}
+.fact p{margin-top:12px;color:var(--linen-dim);font-size:16px}
+.fact .src{
+  margin-top:16px;font-family:var(--mono);font-size:10px;text-transform:uppercase;
+  letter-spacing:.17em;color:var(--linen-label);
+}
+.helps{margin-top:clamp(48px,7vw,80px)}
+.helps ul{margin:26px 0 0;padding:0;list-style:none;max-width:72ch}
+.helps li{
+  border-top:1px solid var(--linen-rule);padding-block:22px;
+  color:var(--linen-dim);font-size:16.5px;min-width:0;
+  position:relative;padding-left:26px;
+}
+.helps li::before{
+  content:"";position:absolute;left:0;top:33px;
+  width:11px;height:1px;background:var(--linen-label);
+}
+
+/* ── credits + footer ────────────────────────────── */
+.credits{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 clamp(28px,5vw,56px);margin-top:28px}
+.credits li{
+  list-style:none;border-top:1px solid var(--rule);padding-block:16px;
+  color:var(--bone-dim);font-size:15.5px;min-width:0;
+}
+.credits-note{margin-top:16px;color:var(--bone-faint);font-size:14.5px;max-width:60ch}
+
+.foot{background:var(--ink);border-top:1px solid var(--rule);padding-block:clamp(48px,7vw,76px)}
+.foot-top{display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;align-items:flex-start}
+.foot-mark{font-family:var(--display);font-weight:500;font-size:34px;letter-spacing:.3em;color:var(--bone)}
+.foot p.d{margin-top:16px;max-width:46ch;color:var(--bone-dim);font-size:15px}
+.foot nav{display:flex;flex-wrap:wrap;gap:10px 24px}
+.foot nav a{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--bone-dim);text-decoration:none}
+.foot nav a:hover,.foot nav a:focus-visible{color:var(--gold)}
+.foot .rule-line{
+  margin-top:clamp(36px,6vw,60px);padding-top:22px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.17em;
+  color:var(--bone-faint);
+}
+
+:where(a,button):focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+@media (max-width:560px){
+  .voice,.line{grid-template-columns:1fr}
+  .voice .tc,.line .n{padding-top:0}
+  .voice .play{grid-column:1}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero-in>*{opacity:1;transform:none}
+}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="#top">PARDA</a>
+    <nav>
+      <a href="#film">The film</a>
+      <a href="#voices">Voices</a>
+      <a href="#story">The story</a>
+      <a href="#why">Why it matters</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── hero ── -->
+  <section class="hero">
+    <img class="hero-bg" id="heroStill" src="hero.jpg" alt="">
+    <video class="hero-bg" id="heroVid" muted loop playsinline preload="none" aria-hidden="true" hidden></video>
+    <div class="hero-veil"></div>
+    <div class="hero-in">
+      <p class="label">Short documentary · Pakistan · 1:55</p>
+      <h1 class="title">PARDA</h1>
+      <p class="title-ur" dir="rtl" lang="ur">پردہ</p>
+      <p class="tagline">A short-documentary series on girls' fight for school</p>
+      <p class="hero-blurb">
+        Girls in Pakistan say what school would have meant to them — the one told to marry
+        instead, the one who has cleaned houses for a year, the one learning to write.
+        <b>Spoken in Urdu, subtitled in English.</b>
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#film">Watch the film</a>
+        <a class="btn btn-ghost" href="#voices">Read the voices</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── film ── -->
+  <section id="film" class="band band-dark">
+    <div class="wrap narrow">
+      <div class="head">
+        <p class="label">The film · 1:55</p>
+        <p class="ur" dir="rtl" lang="ur" style="font-size:15px;color:var(--bone-faint)">آواز آن کریں</p>
+      </div>
+      <div class="player">
+        <video id="film-player" controls playsinline preload="metadata" poster="poster.jpg">
+          <source src="parda.mp4" type="video/mp4">
+          Your browser can't play this video.
+        </video>
+      </div>
+      <div class="film-foot">
+        <span>Urdu, with English subtitles</span>
+        <span>Best watched with sound</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── voices ── -->
+  <section id="voices" class="band band-dark">
+    <div class="wrap narrow">
+      <p class="label">Voices · آوازیں</p>
+      <h2 class="sec-h2-ur" dir="rtl" lang="ur">ہر لڑکی کی ایک کہانی</h2>
+      <p class="sec-sub">
+        Every girl has a story. These are the words spoken on screen — select any line
+        to play that moment of the film.
+      </p>
+
+      <div class="voices" id="voiceList">
+        <button class="voice" data-t="33">
+          <span class="tc">00:35</span>
+          <q>Everyone said, “Get her married.” But all I wanted was to study.</q>
+          <span class="play">Play from 00:35</span>
+        </button>
+        <button class="voice" data-t="49">
+          <span class="tc">00:50</span>
+          <q>I am 16 years old. Yes, I did want to go to school… but I never got to go.</q>
+          <span class="play">Play from 00:50</span>
+        </button>
+        <button class="voice" data-t="62">
+          <span class="tc">01:03</span>
+          <q>I have been working in houses for a year now. I wanted to become a teacher, but I never got to. So now I want to work at a beauty parlour.</q>
+          <span class="play">Play from 01:03</span>
+        </button>
+        <button class="voice" data-t="94">
+          <span class="tc">01:35</span>
+          <q>Now, when I write, I'm not just shaping my own future, but someone else's as well.</q>
+          <span class="play">Play from 01:35</span>
+        </button>
+      </div>
+
+      <div class="endcard">
+        <p class="label">The closing frame</p>
+        <p>Every girl has a story.<br>Not every girl is free to tell hers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── story ── -->
+  <section id="story" class="band band-dark">
+    <div class="wrap narrow">
+      <p class="label">The narration · کہانی</p>
+      <h2 class="sec-h2-ur" dir="rtl" lang="ur">ایک لڑکی، ایک صبح، اور ایک فیصلہ</h2>
+      <p class="sec-sub">One girl, one morning, one decision — the written narration, line by line, with the English beneath.</p>
+
+      <div class="lines" id="storyLines"></div>
+    </div>
+  </section>
+
+  <!-- ── why it matters ── -->
+  <section id="why" class="band band-linen">
+    <div class="wrap">
+      <p class="label">Why it matters</p>
+      <h2 class="sec-h2">Girls' education in Pakistan</h2>
+      <p class="lead-ur" dir="rtl" lang="ur">تعلیم احسان نہیں، حق ہے۔</p>
+      <p class="sec-sub">Education is not a favour. It is a right.</p>
+
+      <div class="facts" id="factGrid"></div>
+
+      <div class="helps">
+        <p class="label">What helps</p>
+        <ul id="actionList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── credits ── -->
+  <section class="band band-dark" style="padding-block:clamp(48px,7vw,80px)">
+    <div class="wrap narrow">
+      <p class="label">Footage</p>
+      <p class="credits-note">This cut is edited from six source films on girls' education.</p>
+      <ul class="credits">
+        <li>A Girl Who Chose School Over Child Marriage — UNICEF × IRP</li>
+        <li>Girls' Education in Pakistan: How 4,000 Girls Are Breaking Barriers</li>
+        <li>Documentary on Female Education in Pakistan</li>
+        <li>Rights of the Girl Child to Education</li>
+        <li>Education: A Dream of Every Child</li>
+        <li>Opening sequence — generated footage</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-mark">PARDA</p>
+        <p class="d">A short documentary on girls' education in Pakistan, spoken in Urdu and cut from six source films.</p>
+      </div>
+      <nav>
+        <a href="#film">The film</a>
+        <a href="#voices">Voices</a>
+        <a href="#story">The story</a>
+        <a href="#why">Why it matters</a>
+      </nav>
+    </div>
+    <p class="rule-line">Education is a constitutional right under Article 25-A</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var STORY = [
+    { ur: "ہر لڑکی کی ایک کہانی ہوتی ہے۔ مگر ہر لڑکی کو اپنی کہانی سنانے کا موقع نہیں ملتا۔",
+      en: "Every girl has a story. But not every girl gets the chance to tell it." },
+    { ur: "ایک لڑکی کی عمر تیرہ سال ہے۔ آج صبح اُس کی ماں نے کہا: بیٹی، سکول چھوڑ دو۔ گھر میں کام بہت ہے، اور راستہ بھی لمبا ہے۔",
+      en: "A girl is thirteen. This morning her mother said: leave school, daughter. There is work at home, and the road is long." },
+    { ur: "وہ کچھ دیر خاموش کھڑی رہی۔ پھر اُس نے کتاب اُٹھائی، دوپٹہ سنبھالا، اور دروازے سے باہر قدم رکھ دیا۔",
+      en: "She stood silent for a moment. Then she picked up her book, settled her dupatta, and stepped out of the door." },
+    { ur: "راستے میں دھوپ تھی، پتھر تھے، اور لوگوں کی نظریں بھی۔ مگر اُس نے پیچھے مڑ کر نہیں دیکھا۔",
+      en: "The road had sun, stones, and other people's eyes. She did not look back." },
+    { ur: "کلاس میں اُس کی کرسی خالی نہیں تھی۔ ایک دن کی تعلیم ایک سال کا خواب بدل دیتی ہے۔",
+      en: "Her chair in the classroom was not empty. One day of learning can change a year of dreaming." },
+    { ur: "تعلیم صرف سکول جانا نہیں، اپنے فیصلے خود کرنا ہے۔",
+      en: "Education is not only going to school — it is making your own decisions." },
+    { ur: "پاکستان میں چار ہزار سے زیادہ لڑکیاں ہر صبح یہی فیصلہ کرتی ہیں۔ اپنی کہانی خود لکھنے کا حق۔",
+      en: "In Pakistan, more than four thousand girls make this decision every morning. The right to write their own story." }
+  ];
+
+  var FACTS = [
+    { stat: "Around 12 million girls are out of school",
+      detail: "Pakistan has one of the highest numbers of out-of-school girls in the world, and most of them never set foot in a classroom at all.",
+      source: "UNICEF" },
+    { stat: "About 22 million children out of school",
+      detail: "The second-highest number of out-of-school children in the world — half of them should be in secondary school by now.",
+      source: "UNESCO" },
+    { stat: "Article 25-A is a right, not a favour",
+      detail: "The Constitution of Pakistan promises free and compulsory education to every child aged 5 to 16. Turning a girl away breaks that promise.",
+      source: "Constitution of Pakistan" },
+    { stat: "School changes the next generation",
+      detail: "Girls who complete secondary school earn more, marry later, and raise healthier children than girls who are pulled out early.",
+      source: "World Bank" }
+  ];
+
+  var ACTIONS = [
+    "Ask a local school what it actually lacks — teachers, toilets, books, a boundary wall — and say it out loud at the next parent meeting.",
+    "Talk to families, not only officials. The barrier is often inside the house, not at the school gate.",
+    "Make the road safe and short: shared transport, a walking group, a teacher at the door in the morning.",
+    "Keep a girl in school through the whole term, not only the first week — a missed month is where most girls are lost.",
+    "Share this film. A two-minute story travels further than a statistic."
+  ];
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  // Narration
+  var lines = document.getElementById("storyLines");
+  STORY.forEach(function (s, i) {
+    var row = el("div", "line");
+    row.appendChild(el("span", "n", (i + 1 < 10 ? "0" : "") + (i + 1)));
+    var col = el("div");
+    var u = el("p", "ur", s.ur);
+    u.setAttribute("dir", "rtl");
+    u.setAttribute("lang", "ur");
+    col.appendChild(u);
+    col.appendChild(el("p", "en", s.en));
+    row.appendChild(col);
+    lines.appendChild(row);
+  });
+
+  // Facts
+  var grid = document.getElementById("factGrid");
+  FACTS.forEach(function (f) {
+    var c = el("div", "fact");
+    c.appendChild(el("h3", null, f.stat));
+    c.appendChild(el("p", null, f.detail));
+    c.appendChild(el("p", "src", "Source: " + f.source));
+    grid.appendChild(c);
+  });
+
+  // Actions
+  var ul = document.getElementById("actionList");
+  ACTIONS.forEach(function (a) { ul.appendChild(el("li", null, a)); });
+
+  // Voice → seek the film
+  var player = document.getElementById("film-player");
+  document.getElementById("voiceList").addEventListener("click", function (ev) {
+    var btn = ev.target.closest(".voice");
+    if (!btn || !player) return;
+    var t = parseFloat(btn.getAttribute("data-t")) || 0;
+    document.getElementById("film").scrollIntoView({
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "center"
+    });
+    var go = function () {
+      try { player.currentTime = t; } catch (e) {}
+      var p = player.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    if (player.readyState >= 1) go();
+    else player.addEventListener("loadedmetadata", go, { once: true });
+  });
+
+  // Ambient hero loop — wide screens only, and never with reduced motion
+  var still = document.getElementById("heroStill");
+  var vid = document.getElementById("heroVid");
+  if (vid && matchMedia("(min-width: 900px)").matches &&
+      !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Loop only the footage: skip the opening title card and stop before the end card,
+    // so the hero never double-exposes the film's own titles behind the heading.
+    var FROM = 12, TO = 100;
+    vid.src = "parda.mp4";
+    vid.addEventListener("timeupdate", function () {
+      if (vid.currentTime > TO || vid.currentTime < FROM - 0.5) {
+        try { vid.currentTime = FROM; } catch (e) {}
+      }
+    });
+    vid.addEventListener("canplay", function () {
+      try { vid.currentTime = FROM; } catch (e) {}
+      vid.hidden = false;
+      if (still) still.hidden = true;
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () { vid.hidden = true; if (still) still.hidden = false; });
+    }, { once: true });
+    vid.load();
+    // Pause the loop while the real player is in use.
+    if (player) {
+      player.addEventListener("play", function () { vid.pause(); });
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
